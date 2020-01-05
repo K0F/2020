@@ -1,8 +1,8 @@
-# 2019
+# 2020
 
-Kof's sketchbook year 2019, build with [Processing](http://processing.org) software.
+Kof's sketchbook year 2020, sketches are build with [Processing](http://processing.org) software.
 
-The sketches are organized by months of year. This structure can make a feel of a superior organization, which in fact is false, it is rather mess with all ideas and unfinished concepts placed in kind of plain time-line space. Feel free to dig in and recycle anything useful for you.. when you find something like this, do not hesitate to contact me.
+The sketches are organized by months of year. This structure can make feel of some order, which in fact is false. It is rather mess with all ideas and unfinished concepts placed in kind of plain time-line space. Feel free to dig in and recycle anything useful for you.. when you find something like this, do not hesitate to contact me, or use whatever what fits your current need.
 
 ## Sketches Running On-line
 
@@ -17,6 +17,7 @@ Other way of on-line presentation is quite heavily re-compressed (h264) videos, 
 
 If you really feel like digging, there are more historical *pieces*. To travel back in time in repositories:
 
+* [2019](https://github.com/K0F/2019)
 * [2018](https://github.com/K0F/2018)
 * [2017](https://github.com/K0F/2017)
 * [2016](https://github.com/K0F/2016)
