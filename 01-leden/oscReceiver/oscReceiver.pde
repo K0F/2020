@@ -4,13 +4,11 @@ import netP5.*;
 import java.io.RandomAccessFile;
 
 
+OscP5 oscP5;
 float x, y, z;
 ArrayList tail;
 float sm = 10.0;
 //import processing.opengl.*;
-
-
-int numFrames = 29940;
 
 RandomAccessFile pipe;
 byte raw[];
@@ -30,13 +28,15 @@ int c=0;
 //ArrayList zaznamy;
 
 void setup() {
-  size(1920,1080,OPENGL);
+  size(1024,576,OPENGL);
+  oscP5 = new OscP5(this, 57120);
   frameRate(rate);
-noiseSeed(2020);
+  tail = new ArrayList();
+
 
   raw = new byte[width*height*3];
 
-  // zaznamy = ArrayList();
+ // zaznamy = ArrayList();
 
   try {
     Process b = new ProcessBuilder( "rm", sketchPath("")+"/raw.rgb" ).start();
@@ -56,30 +56,56 @@ noiseSeed(2020);
   rectMode(CENTER);
 
 }
+/*
+void record(){
 
-void draw() {
-  background(0);
-  drawTc();
-
-  int step = 70;
-  for(int y = step;y<height;y+=step)
-  for(int x = step;x<width;x+=step){
-fill(255,15);
-  pushMatrix();
-  rectMode(CENTER);
-  noStroke();
-  translate(x,y);
-  rotate(frameCount/60.0*TWO_PI*(noise(x/1000.0,y/1000.0+frameCount/60.0)*0.1+1.0)*(-1.0));
-  rect(0,0,step,step);
-
-  popMatrix();
-  }
-  dump();
-
-  if(frameCount>numFrames)
-  exit();
+  zaznamy.add(new Recording(zaznamy.size()));
 
 }
+*/
+void draw() {
+  //rect(x*(-1.0)*100.0+width/2, y*100.0+height/2, z, z);
+  background(0);
+  drawTc();
+  translate(width/2,height/2);
+
+  for(int i = 0 ; i < tail.size();i++){
+    PVector tmp = (PVector)tail.get(i);
+    pushMatrix();
+    pushStyle();
+    noFill();
+    stroke(255,25);
+    rotateY(tmp.x/4.0 * (-1.0));
+    rotateX(tmp.y/4.0 * (-1.0));
+    //box(tmp.z/20.0*i+2);
+    box((tmp.z/200.0+1)*i+2);
+    popStyle();
+    popMatrix();
+  }
+  dump();
+}
+
+void oscEvent(OscMessage theOscMessage) {
+  if (theOscMessage.addrPattern().equals("/accelerometer")) {
+    x += (theOscMessage.get(0).floatValue()-x)/sm;
+    y += (theOscMessage.get(1).floatValue()-y)/sm;
+    z += (theOscMessage.get(2).floatValue()-z)/sm;
+    tail.add(new PVector(x,y,z));
+/*
+    if(zaznamy.size()>0)
+      for(int i = 0 ; i < zaznamy.size();i++){
+        Recording tmp = (Recording)zaznamy.get(i);
+        if(tmp.isRecording)
+          tmp.add(x,y,z);
+      }
+*/
+
+    if(tail.size()>300)
+      tail.remove(0);
+  }
+}
+
+
 void dump() {
   loadPixels();
   for (int i = 0 ; i < pixels.length;i++) {
@@ -112,6 +138,7 @@ void drawTc(){
   if(hours>23){
     hours=0;
   }
+
 
   tc = nf(hours,2)+":"+nf(minutes,2)+":"+nf(seconds,2)+":"+nf(fr,2);
   fill(0);
