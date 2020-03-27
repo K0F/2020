@@ -6,7 +6,8 @@ float minval = 0.0;
 float maxval = 10000.0;
 float mag = 480.0;
 float scaleX = 1;
-String filename = "COVID-19-geographic-disbtribution-worldwide-2020-03-27.csv";
+String filename = "COVID-19-geographic-disbtribution-worldwide-2020-03-28.csv";
+//"COVID-19-geographic-disbtribution-worldwide-2020-03-27.csv";
 int nejdelsi = 0;
 
 void setup(){
