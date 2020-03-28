@@ -3,11 +3,12 @@ import java.util.Collections;
 String [] raw;
 ArrayList countries;
 float minval = 0.0;
-float maxval = 10000.0;
+float maxval = 0.0;
+
+float maxvals[] = {10000.0,100000.0};
 float mag = 480.0;
 float scaleX = 1;
-String filename = "COVID-19-geographic-disbtribution-worldwide-2020-03-28.csv";
-//"COVID-19-geographic-disbtribution-worldwide-2020-03-27.csv";
+String filename = "replaceme";
 int nejdelsi = 0;
 
 void setup(){
@@ -49,20 +50,24 @@ void setup(){
 }
 
 void draw(){
-  background(250);
-  stroke(0,15);
-  fill(0);
-  for(int i = 0; i < nejdelsi;i++){
-    float x = i*scaleX;
-    line(x,0,x,height);
-    text((i-nejdelsi+1)+"D",x,10);
-  }
+  for(int ii = 0 ; ii < maxvals.length;ii++){
+    maxval = maxvals[ii];
+    background(250);
+    stroke(0,15);
+    fill(0);
+    for(int i = 0; i < nejdelsi;i++){
+      float x = i*scaleX;
+      line(x,0,x,height);
+      text((i-nejdelsi+1)+"D",x,10);
+    }
 
-  for(int i =0 ; i < countries.size();i++){
-    Country tmp = (Country)countries.get(i);
-    tmp.draw();
+    for(int i =0 ; i < countries.size();i++){
+      Country tmp = (Country)countries.get(i);
+      tmp.draw();
+    }
+    save("output/"+splitTokens(filename,".")[0]+"_"+(int)maxval+".png");
   }
-  save("output/"+splitTokens(filename,".")[0]+"_"+(int)maxval+".png");
+  exit();
 }
 
 
