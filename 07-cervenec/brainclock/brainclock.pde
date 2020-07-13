@@ -1,30 +1,48 @@
 
-int siz = 10;
-int bits = 24;
+int siz = 5;
+int bits = 512;
 Neuron [] neurons;
+float side;
+float res = 10.0;
 
 void setup(){
-	size(640,480,P2D);
+	size(320,240,P2D);
+	//fullScreen();
 	neurons = new Neuron[bits];
 
+	float x = 0;
+	float y = 0;
+	side = sqrt((float)bits);
+	//println(side);
 	for(int i = 0 ; i < bits;i++){
+		float detune = noise(i/res);
 		neurons[i] = new Neuron(
-				110+(i),
-				i/(bits+0.0),
-				i*siz+width/2.0-(bits*siz/2.0),
-				height/2.0-siz/2.0
+				121.35 + detune,
+ 				detune,
+				//i*siz+width/2.0-(bits*siz/2.0),
+				//height/2.0-siz/2.0
+				x,
+				y
 				);
+
+		if(x > side*siz){
+			x=0;
+			y+=siz;
+		};
+
+		x+=siz;
 	}
 }
 
 
 void draw(){
-
 	background(0);
+	pushMatrix();
+	translate(width/2-side/2,height/2-side/2);	
 	for(int i = 0 ; i < bits;i++){
 		neurons[i].draw();
 	}	
-
+	popMatrix();
 }
 
 
