@@ -13,9 +13,9 @@ void setup(){
 	slots = new Slot[4];
 
 	slots[0] = new Slot(width/2-siz*num,100,num,false);
-	slots[1] = new Slot(width/2+3+siz*num,100,num,true);
+	slots[1] = new Slot(width/2+siz*num,100,num,true);
 	slots[2] = new Slot(width/2-siz*num,110,num,false);
-	slots[3] = new Slot(width/2+3+siz*num,110,num,true);
+	slots[3] = new Slot(width/2+siz*num,110,num,true);
 
 }
 
