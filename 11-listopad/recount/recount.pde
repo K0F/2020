@@ -41,7 +41,7 @@ class Slot{
 		reverse = _reverse;
 		pos = new PVector(x,y);
 		pos = new String("00000000");
-
+	}
 		void draw(){
 
 			fill(255);
