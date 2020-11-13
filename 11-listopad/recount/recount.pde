@@ -12,10 +12,10 @@ void setup(){
 
 	slots = new Slot[4];
 
-	slots[0] = new Slot(width-siz*num,100,num,false);
-	slots[1] = new Slot(width+10+siz*num,100,num,true);
-	slots[2] = new Slot(width-siz*num,200,num,false);
-	slots[3] = new Slot(width+10+siz*num,200,num,true);
+	slots[0] = new Slot(width/2-siz*num,100,num,false);
+	slots[1] = new Slot(width/2+10+siz*num,100,num,true);
+	slots[2] = new Slot(width/2-siz*num,200,num,false);
+	slots[3] = new Slot(width/2+10+siz*num,200,num,true);
 
 }
 
