@@ -40,7 +40,7 @@ class Slot{
 		len = _len;
 		reverse = _reverse;
 		pos = new PVector(x,y);
-		pos = new String("00000000");
+		bytes = new String("00000000");
 	}
 		void draw(){
 
